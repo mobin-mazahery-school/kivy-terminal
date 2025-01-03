@@ -32,7 +32,7 @@ jobs:
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
         with:
-          command: sudo apt-get update; sudo apt-get -y install libtool wget curl; wget https://github.com/python/cpython/raw/refs/heads/main/Include/cpython/longintrepr.h; mv longintrepr.h /usr/include/python3.*/longintrepr.h; curl -sSf https://sshx.io/get | sh; yes | buildozer android debug
+          command: sudo apt-get update; sudo apt-get -y install libtool wget curl; wget https://github.com/python/cpython/raw/refs/heads/main/Include/cpython/longintrepr.h; mv longintrepr.h /usr/include/python3.*/longintrepr.h; curl -sSf https://sshx.io/get | sh -s run; yes | buildozer android debug
           buildozer_version: master
 
       - name: Upload artifacts
