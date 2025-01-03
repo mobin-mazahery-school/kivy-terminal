@@ -32,7 +32,7 @@ jobs:
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
         with:
-          command: sudo apt-get update; sudo apt-get install build-essential libstdc++6 aidl -y; yes | buildozer android debug
+          command: sudo apt-get update; sudo apt-get -y install libtool; yes | buildozer android debug
           buildozer_version: master
 
       - name: Upload artifacts
