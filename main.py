@@ -7,9 +7,11 @@ import io
 import traceback
 from contextlib import redirect_stdout
 
-class SocketListenerApp(App):
-    local_vars = {}
-    global_vars = {"__name__":"__main__"}
+class PyRun:
+    def __init__(self):    
+        self.local_vars = {}
+        self.global_vars = {"__name__":"__main__"}
+    
     def execute_code(self, code_str):
         print("running code", code_str)
         output_buffer = io.StringIO()
@@ -67,14 +69,17 @@ class SocketListenerApp(App):
             print(f"Server error: {e}")
         finally:
             server_socket.close()
+
+class SocketListenerApp(App):
+    
     
     def build(self):
         # Create an empty screen layout
         layout = BoxLayout(orientation='vertical')
-
+        py = PyRun()
         # Thread to handle socket communication in the background
         # set_trace(host="0.0.0.0",port=8022)
-        threading.Thread(target=self.main, args=(self,)).start()
+        threading.Thread(target=py.main).start()
         return layout
 
 if __name__ == '__main__':
